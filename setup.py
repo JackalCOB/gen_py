@@ -9,7 +9,7 @@ setup(
         'tqdm',  # Add tqdm as a requirement
     ],
     author='JackalCOB',
-    author_email='jacob-couper@live.com'
+    author_email='jacob-couper@live.com',
     description='General python functions usable across a multitude of different projects',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
