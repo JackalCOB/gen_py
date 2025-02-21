@@ -1,14 +1,10 @@
-# setup.py
-from setuptools import setup, find_packages
-
-print(find_packages()) 
-
 from setuptools import setup, find_packages
 
 setup(
     name='general_py',
     version='0.1',
     packages=find_packages(where='modules'),
+    package_dir={'': 'modules'},
     install_requires=[
         'tqdm',  # Add tqdm as a requirement
     ],
