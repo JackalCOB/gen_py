@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: general-py
+Version: 0.1
+Summary: General python functions usable across a multitude of different projects
+Home-page: https://github.com/JackalCOB/general_py
+Author: JackalCOB
+Author-email: jacob-couper@live.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: tqdm
+
+# general_py
+
+## Overview
+
+General python functions usable across a multitude of different projects
+
+
+## Installation and Usage
+
+```bash
+pip install git+https://github.com/JackalCOB/general_py.git
+```
+
+```python
+from general_py import *
+```
