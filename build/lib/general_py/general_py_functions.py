@@ -1,5 +1,19 @@
 ########################################################################################################################
 
+# Function to delete specified variables from the global namespace
+def delete_variables(variables):
+    """
+    Delete specified variables if they exist in the global namespace.
+
+    Parameters:
+        variables (list of str): List of variable names to delete.
+    """
+    for var in variables:
+        if var in globals():
+            del globals()[var]
+
+########################################################################################################################
+
 # Define ANSI escape codes for text styling and formatting
 class format_style:
     """
@@ -70,13 +84,17 @@ def print_format(texts, indent=0, pad_width=0, style=format_style.BLUE + format_
 
     formatted_texts = []
     for i, text in enumerate(texts):
-        # Indent the text
+        # Convert text to string and add indentation
         text = str(text)
         indented_text = " " * (indent[i] * 4) + text
-        # Pad the text to specified width
+        
+        # Calculate padding needed to reach the specified width
         padding_length = pad_width[i] - len(indented_text)
+        
+        # Pad the text to the specified width
         padded_text = indented_text + " " * max(0, padding_length)
-        # Apply styling if specified
+        
+        # Apply optional styling
         styled_text = style[i] + padded_text + format_style.ENDC if style[i] else padded_text
         formatted_texts.append(styled_text)
 
@@ -86,7 +104,7 @@ def print_format(texts, indent=0, pad_width=0, style=format_style.BLUE + format_
 ########################################################################################################################
 
 # Function to format the tqdm string
-def tqdm_format(desc, length=52, indent=0, style=None):
+def tqdm_format(desc, length=52, indent=0, style=None, bar_format=None):
     """
     Format the tqdm description with padding and optional styling.
 
@@ -95,39 +113,29 @@ def tqdm_format(desc, length=52, indent=0, style=None):
     length (int): The total length of the padded description.
     indent (int): The number of indent levels (4 spaces per level).
     style (str): Optional ANSI escape code for styling.
+    bar_format (str): Optional format string for the progress bar.
 
     Returns:
     tuple: Padded description and bar format string.
     """
-    # Add spaces for indentation
+    # Convert description to string and add indentation
     desc = str(desc)
-    indented_desc = ' ' * (indent * 2) + desc
-    # Calculate the padding needed for the description
+    indented_desc = ' ' * (indent * 4) + desc
+    
+    # Calculate padding needed to reach the specified length
     padding_length = length - len(indented_desc)
+    
     # Pad the description to the specified length
     padded_desc = indented_desc + ' ' * padding_length
-    # Apply style
-    if style is None:
-        padded_desc = padded_desc
-    else:
+    
+    # Apply optional styling
+    if style is not None:
         padded_desc = style + padded_desc + format_style.ENDC
-    # Ensure the progress bar starts at the same position
-    bar_format = '{l_bar}{bar}| {n_fmt:>12}/{total_fmt:<12} {elapsed} <-- {remaining}'
+    
+    # Set default progress bar format if not provided
+    if bar_format is None:
+        bar_format = '{l_bar}{bar}| {n_fmt:>12}/{total_fmt:<12} {elapsed} <-- {remaining}'
 
     return padded_desc, bar_format
-
-########################################################################################################################
-
-# Function to delete specified variables from the global namespace
-def delete_variables(variables):
-    """
-    Delete specified variables if they exist in the global namespace.
-
-    Parameters:
-        variables (list): List of variable names (as strings) to delete.
-    """
-    for var in variables:
-        if var in globals():
-            del globals()[var]
 
 ########################################################################################################################
