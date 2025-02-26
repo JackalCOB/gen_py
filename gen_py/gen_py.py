@@ -125,7 +125,7 @@ class format_style:
         INVERSE = ''  # Not supported in colorama
         ITALIC = ''  # Not supported in colorama
         STRIKETHROUGH = ''  # Not supported in colorama
-        UNDERLINE = Style.UNDERLINE
+        UNDERLINE = ''  # Not supported in colorama
         
         # Reset Formatting
         ENDC = Style.RESET_ALL
